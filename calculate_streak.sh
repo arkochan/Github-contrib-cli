@@ -41,8 +41,10 @@ for arg in "$@"; do
   esac
 done
 
+github_username=$(git config user.name)
+
 # Fetch contribution data using GitHub API
-contributions_json=$(gh api graphql -F username='arkochan' -f query='
+contributions_json=$(gh api graphql -F username=$github_username -f query='
 query($username: String!) {
   user(login: $username) {
     contributionsCollection {
